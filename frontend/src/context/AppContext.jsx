@@ -2,7 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 
 const AppContext = createContext();
 
-const API_BASE = 'http://127.0.0.1:8000';
+// Set the Backend API URL correctly dynamically
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
 
 export const AppProvider = ({ children }) => {
   const [sessions, setSessions] = useState([]);
@@ -207,7 +208,7 @@ export const AppProvider = ({ children }) => {
       console.error(err);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: 'Error: Connection lost. Ensure your backend is running at http://localhost:8000.',
+        content: `Error: Connection lost. Ensure your backend is running at ${API_BASE}.`,
         name: 'Network Connection Error'
       }]);
     } finally {
