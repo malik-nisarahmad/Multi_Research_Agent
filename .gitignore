@@ -28,6 +28,7 @@ ENV/
 env.bak/
 venv.bak/
 .env
+.env_example
 
 # Node / Frontend (fallback if frontend/.gitignore is missing)
 node_modules/
